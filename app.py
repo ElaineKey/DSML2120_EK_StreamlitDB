@@ -1,23 +1,15 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="My Streamlit Site",
-    page_icon="📊",
-    layout="wide"
-)
+st.set_page_config(page_title"Funnel Dashboard, layout="wide")
 
-st.title(" Welcome to My Streamlit Site")
-st.markdown(
-    """
-    This is a two-page Streamlit app:
-    - **Bio**: who I am
-    - **Visualization**: a tiny interactive chart
+@st.cache_data
+def get_data():
+    return load_data()
 
-    Use the left sidebar to switch pages.
-    """
-)
+df_all = get_data()
 
-with st.expander("How this app is organized (for students)"):
+with st.sidebar:
+("How this app is organized (for students)"):
     st.write(
         """
         - `app.py` is the entry point.
