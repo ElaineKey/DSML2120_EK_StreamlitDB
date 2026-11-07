@@ -1,12 +1,13 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(page_title"Funnel Dashboard, layout="wide")
 
 @st.cache_data
-def get_data():
-    return load_data()
+def load():
+    return pd.read_csv("website_funnel.csv", parse_dates=["date"])
 
-df_all = get_data()
+df = load()
 
 with st.sidebar:
 ("How this app is organized (for students)"):
