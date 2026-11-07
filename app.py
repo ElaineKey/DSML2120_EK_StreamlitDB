@@ -1,13 +1,23 @@
 import streamlit as st
 import pandas as pd
+import charts
+import metrics
 
 st.set_page_config(page_title"Funnel Dashboard, layout="wide")
 
 @st.cache_data
-def load():
+def load_data():
     return pd.read_csv("website_funnel.csv", parse_dates=["date"])
 
-df = load()
+df_all = load_data()
+
+#this was originally planned to be read from a seperate file
+#its now implemented to be inline for simplicity and I hate doing the seperate file so.
+#@st.cache_data
+#def load():
+#    return pd.read_csv("website_funnel.csv", parse_dates=["date"])
+#
+#df = load()
 
 # START SIDEBAR FILTERS ---
 
