@@ -62,7 +62,7 @@ rates = pd.DataFrame({
 
 by_src = df.groupby("traffic_source")[["sessions", "purchases"]].sum()
 p = paid.groupby("device")[["ad_spend_usd", "purchases"]].sum()
-ts = df.set_index()
+ts = df.set_index("date")[["sessions", "purchases"]].resample(freq).sum()
 
 left, right = st.columns(2)
 left.subheader("Funnel by device")
