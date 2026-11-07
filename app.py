@@ -42,15 +42,36 @@ c[4].metric("Paid cost / purchase", f"${paid.ad_spend_usd.sum() / paid.purchases
 
 # START CHARTS ---
 
-by_dev = df.groupby("device")[["sessions, "product_views"]].sum()
+by_dev = df.groupby("device")[["sessions, "product_views", "add_to_car", "checkouts", "purchases"]].sum()
 rates = pd.DataFrame({
     "1 view": by_dev.product_views / by_dev.sessions,
     "2 cart": by_dev.add_to_cart / by_dev.product_views,
+    "3 checkout": by_dev.checkouts / by_dev.add_to_cart,
+    "4 checkout": by_dev.purchases / by_dev.checkouts,
 })
 
 by_src = df.groupby("traffic_source")[["sessions", "purchases"]].sum()
 p = paid.groupby("device")[["ad_spend_usd", "purchases"]].sum()
 ts = df.set_index()
+
+left, right = st.columns(2)
+left.subheader("Funnel by device")
+left.bar_chart(by_dev.T.set_axis(["1 sessions", "2 views", "3 cart", "4 checkout", "5 purchase"]))
+right.subheader("Step conversion by device")
+right.bar_chart(rates.T)
+
+left, right = st.columns(2)
+left.subheader("Paid cost per purchase by device")
+left.bar_chart(p.ad_spend_usd / p.purchases)
+right.subheader("Conversion by traffic source")
+right.bar_chart(by_src.purchases / by_src.sessions, horizontal=True)
+
+left, right = st.columns(2)
+left.subheader("Sessions over time")
+left.line_chart(ts.sessions)
+right.subheader("Conversion rate over time")
+right.line_chart(ts.purchases / ts.sessions)
+
 
 #with st.sidebar:
 #("How this app is organized (for students)"):
