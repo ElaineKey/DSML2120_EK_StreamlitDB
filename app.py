@@ -42,8 +42,15 @@ c[4].metric("Paid cost / purchase", f"${paid.ad_spend_usd.sum() / paid.purchases
 
 # START CHARTS ---
 
+by_dev = df.groupby("device")[["sessions, "product_views"]].sum()
+rates = pd.DataFrame({
+    "1 view": by_dev.product_views / by_dev.sessions,
+    "2 cart": by_dev.add_to_cart / by_dev.product_views,
+})
 
-
+by_src = df.groupby("traffic_source")[["sessions", "purchases"]].sum()
+p = paid.groupby("device")[["ad_spend_usd", "purchases"]].sum()
+ts = df.set_index()
 
 #with st.sidebar:
 #("How this app is organized (for students)"):
