@@ -1,17 +1,7 @@
-import subprocess, sys
-try:
-       import plotly  # noqa: F401
-except ModuleNotFoundError:
-       subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
-
-
-import streamlit as st
-import pandas as pd
-
-import charts
-import metrics
-import plotly.express as px
 from pathlib import Path
+
+import pandas as pd
+import streamlit as st
 
 #fix using Path for running out of the cloud service.
 st.set_page_config(page_title="Funnel Dashboard", layout="wide")
