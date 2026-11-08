@@ -2,12 +2,18 @@ import streamlit as st
 import pandas as pd
 import charts
 import metrics
+from pathlib import Path
 
-st.set_page_config(page_title="Funnel Dashboard, layout="wide")
+#fix using Path for running out of the cloud service.
+st.set_page_config(page_title="Funnel Dashboard", layout="wide")
+
+DATA_PATH = Path(__file__).parent / "data" / "website_funnel.csv"
+
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("website_funnel.csv", parse_dates=["date"])
+    return pd.read_csv(DATA_PATH, parse_dates=["date"])
+
 
 df_all = load_data()
 
