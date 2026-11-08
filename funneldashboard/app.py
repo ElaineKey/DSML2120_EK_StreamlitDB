@@ -3,7 +3,7 @@ import pandas as pd
 import charts
 import metrics
 
-st.set_page_config(page_title"Funnel Dashboard, layout="wide")
+st.set_page_config(page_title="Funnel Dashboard, layout="wide")
 
 @st.cache_data
 def load_data():
