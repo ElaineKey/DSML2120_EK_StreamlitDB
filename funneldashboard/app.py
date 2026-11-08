@@ -14,7 +14,7 @@ def load_data():
     return pd.read_csv(DATA_PATH, parse_dates=["date"])
 
 
-df_all = load_data()
+df = load_data()
 
 #this was originally planned to be read from a seperate file
 #its now implemented to be inline for simplicity and I hate doing the seperate file so.
