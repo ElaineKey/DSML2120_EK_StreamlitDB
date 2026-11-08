@@ -1,13 +1,8 @@
-import sys
-from pathlib import Path
-import subprocess
-import streamlit as st
-
-req = Path(__file__).parent / "requirements.txt"
-st.write("requirements.txt exists:", req.exists())
-if req.exists():
-    st.code(repr(req.read_bytes()))
-st.code(subprocess.run([sys.executable, "-m", "pip", "list"], capture_output=True, text=True).stdout)
+   import subprocess, sys
+   try:
+       import plotly  # noqa: F401
+   except ModuleNotFoundError:
+       subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
 
 
 import streamlit as st
