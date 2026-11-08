@@ -71,7 +71,7 @@ ts = df.set_index("date")[["sessions", "purchases"]].resample(freq).sum()
 
 left, right = st.columns(2)
 left.subheader("Funnel by device")
-left.bar_chart(by_dev.T.set_axis(["1 sessions", "2 views", "3 cart", "4 checkout", "5 purchase"]))
+left.bar_chart(by_dev.T.set_axis(["(1) sessions", "(2) views", "(3) cart", "(4) checkout", "(5) purchase"]))
 right.subheader("Step conversion by device")
 right.bar_chart(rates.T)
 
