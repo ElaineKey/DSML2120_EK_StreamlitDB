@@ -1,4 +1,4 @@
-   import subprocess, sys
+import subprocess, sys
    try:
        import plotly  # noqa: F401
    except ModuleNotFoundError:
