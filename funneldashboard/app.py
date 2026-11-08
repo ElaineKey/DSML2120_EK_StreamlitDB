@@ -1,7 +1,7 @@
 import subprocess, sys
-   try:
+try:
        import plotly  # noqa: F401
-   except ModuleNotFoundError:
+except ModuleNotFoundError:
        subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
 
 
