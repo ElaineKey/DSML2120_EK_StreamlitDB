@@ -16,7 +16,9 @@ def funnel_chart(totals):
 
 #conversion chart
 def step_conversion_chart(rates):
+#shaping table from wide to long
     long = rates.reset_index().melt(id_vars=rates.index.name, var_name="step", value_name="rate")
+#draw chart conversion rate sets the bar height
     fig = px.bar(long, x="step", y="rate", color=rates.index.name, barmode="group")
     fig.update_yaxes(tickformat=".0%", title=None)
     fig.update_xaxes(title=None)
@@ -39,8 +41,12 @@ def source_chart(src):
 #time chart as total
 def time_chart(ts):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    #adding both lines to chart
     fig.add_trace(go.Scatter(x=ts["date"], y=ts["sessions"], name="Sessions"), secondary_y=False)
     fig.add_trace(go.Scatter(x=ts["date"], y=ts["conversion_rate"], name="Conversion rate"), secondary_y=True)
+
+    #display conversion rate with tick format set as %
     fig.update_yaxes(title_text="Sessions", secondary_y=False)
     fig.update_yaxes(title_text="Conversion rate", tickformat=".1%", secondary_y=True)
     return fig
